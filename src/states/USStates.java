@@ -1,5 +1,6 @@
 package states;
 
+import java.util.HashMap;
 import java.util.Map;
 
 public class USStates {
@@ -14,13 +15,26 @@ public class USStates {
      *   value 4 (Alabama, Alaska, Arizona, Arkansas), and 'B' should be a key
      *   with value 0.
      */
-    public static Map<Character, Integer> countStatesByFirstLetter() {
+    public static Map<Character, Integer> countStatesByFirstLetter(String [] stateNames) {
         // TODO: Write this method.
-        return null;
+
+        HashMap<Character, Integer> countmap = new HashMap<>();
+
+        for(String state: stateNames){
+            char firstLetter = state.charAt(0);
+            if(countmap.containsKey(firstLetter)){
+                countmap.put(firstLetter,countmap.get(firstLetter)+1);
+            }else {
+                countmap.put(firstLetter,1);
+            }
+        }
+        return countmap;
     }
 
     public static void main(String[] args) {
-        Map<Character, Integer> counts = countStatesByFirstLetter();
+        Map<Character, Integer> counts = countStatesByFirstLetter(STATE_NAMES);
+
+
         // Do some simple tests.  Feel free to add your own.
         if (counts.size() != 26) throw new AssertionError();
         if (!counts.containsKey('A')) throw new AssertionError();
